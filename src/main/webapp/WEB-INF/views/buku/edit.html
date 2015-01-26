@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Edit Buku</title>
+</head>
+<body>
+	<form th:action="@{edit}" th:object="${buku}" th:method="POST">
+		<table>
+			<tr>
+				<td>Judul</td>
+				<td><input th:field="*{judul}" /></td>
+			</tr>
+			<tr>
+				<td>Pengarang</td>
+				<td><input th:field="*{pengarang}" /></td>
+			</tr>
+			<tr>
+				<td>Kategori</td>
+				<td>
+					<select name="kategori">
+						<option th:each="kt : ${kategoriList}"
+								th:value="${kt.id}"
+								th:text="${kt.nama}"
+								th:selected="*{kategori.id} == ${kt.id}">Kategori</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="hidden" name="id" th:value="${buku.id}" />
+					<input type="submit" value="Simpan" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
