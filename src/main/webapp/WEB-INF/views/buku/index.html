@@ -34,8 +34,10 @@
 								<td th:text="${buku.judul}"></td>
 								<td th:text="${buku.pengarang}"></td>
 								<td th:text="${buku.kategori.nama}"></td>
-								<td><a href="#" th:href="@{edit(id=${buku.id})}">Edit</a> |
-									<a href="#" th:href="@{delete(id=${buku.id})}">Hapus</a></td>
+								<td>
+									<a href="#" class="btn btn-primary" th:href="@{edit(id=${buku.id})}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+									<a href="#" class="btn btn-danger" th:href="@{delete(id=${buku.id})}"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+								</td>
 							</tr>
 						</table>
 					</div>

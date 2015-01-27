@@ -38,6 +38,26 @@ public class KategoriController {
 		return "redirect:/kategori/list";
 	}
 	
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public String edit(Model model, @RequestParam("id") Long id)
+			throws NotFoundException {
+		Kategori kategori = kategoriService.getById(id);
+
+		if (kategori == null) {
+			throw new NotFoundException();
+		}
+
+		model.addAttribute("kategori", kategori);
+		
+		return "kategori/edit";
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public String prosesEdit(@ModelAttribute("kategori") Kategori kategori) {
+		kategoriService.save(kategori);
+		return "redirect:/kategori/list";
+	}
+	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(@RequestParam("id") Long id) {
 		Kategori kategori = kategoriService.getById(id);
