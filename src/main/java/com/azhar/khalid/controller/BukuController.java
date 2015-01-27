@@ -61,6 +61,8 @@ public class BukuController {
 		}
 
 		model.addAttribute("buku", buku);
+		model.addAttribute("kategoriList", kategoriService.getAll());
+		
 		return "buku/edit";
 	}
 
