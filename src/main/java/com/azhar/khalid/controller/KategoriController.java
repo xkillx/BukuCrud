@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.azhar.khalid.domain.Kategori;
+import com.azhar.khalid.exception.NotFoundException;
 import com.azhar.khalid.service.KategoriService;
 
 @Controller
@@ -33,6 +35,18 @@ public class KategoriController {
 	public String prosesTambahKategori(
 			@ModelAttribute("kategori") Kategori kategori) {
 		kategoriService.save(kategori);
+		return "redirect:/kategori/list";
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete(@RequestParam("id") Long id) {
+		Kategori kategori = kategoriService.getById(id);
+
+		if (kategori == null) {
+			throw new NotFoundException();
+		}
+
+		kategoriService.delete(kategori);
 		return "redirect:/kategori/list";
 	}
 }

@@ -20,10 +20,15 @@
 							<tr>
 								<th>No</th>
 								<th>Kategori</th>
+								<th>Aksi</th>
 							</tr>
 							<tr th:each="kategori, iterStat : ${kategoriList}">
 								<td th:text="${iterStat.count}" />
 								<td th:text="${kategori.nama}" />
+								<td>
+									<a href="#" class="btn btn-primary" th:href="@{edit(id=${kategori.id})}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+									<a href="#" class="btn btn-danger" th:href="@{delete(id=${kategori.id})}"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+								</td>
 							</tr>
 						</table>
 					</div>
